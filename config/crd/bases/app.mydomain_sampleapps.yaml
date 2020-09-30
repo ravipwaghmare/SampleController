@@ -34,10 +34,16 @@ spec:
         spec:
           description: SampleAppSpec defines the desired state of SampleApp
           properties:
-            foo:
-              description: Foo is an example field of SampleApp. Edit SampleApp_types.go
-                to remove/update
-              type: string
+            userInfo:
+              description: UserInfo stores user information
+              properties:
+                email:
+                  type: string
+                mobile_number:
+                  type: integer
+                name:
+                  type: string
+              type: object
           type: object
         status:
           description: SampleAppStatus defines the observed state of SampleApp

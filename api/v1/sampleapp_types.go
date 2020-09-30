@@ -27,8 +27,15 @@ type SampleAppSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of SampleApp. Edit SampleApp_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// UserInfo stores user information
+	UserInfo UserInfo `json:"userInfo,omitempty"`
+}
+
+// UserInfo stores user information
+type UserInfo struct {
+	Name     string `json:"name,omitempty"`
+	MobileNo int    `json:"mobile_number,omitempty"`
+	Email    string `json:"email,omitempty"`
 }
 
 // SampleAppStatus defines the observed state of SampleApp

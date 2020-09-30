@@ -3,5 +3,7 @@ kind: SampleApp
 metadata:
   name: sampleapp-sample
 spec:
-  # Add fields here
-  foo: bar
+  userInfo:
+    name: neha
+    mobile_number: 9730550728
+    email: neha

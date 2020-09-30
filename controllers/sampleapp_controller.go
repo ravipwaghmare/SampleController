@@ -19,6 +19,7 @@ import (
 	"context"
 
 	"github.com/go-logr/logr"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -37,11 +38,20 @@ type SampleAppReconciler struct {
 // +kubebuilder:rbac:groups=app.mydomain,resources=sampleapps/status,verbs=get;update;patch
 
 func (r *SampleAppReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
-	_ = context.Background()
+	ctx := context.Background()
 	_ = r.Log.WithValues("sampleapp", req.NamespacedName)
 
-	// your logic here
+	// Get HardwareClassificationController to get values for Namespace and ExpectedHardwareConfiguration
+	sampleApp := &appv1.SampleApp{}
 
+	if err := r.Client.Get(ctx, req.NamespacedName, sampleApp); err != nil {
+		if apierrors.IsNotFound(err) {
+			return ctrl.Result{}, nil
+		}
+		return ctrl.Result{}, err
+	}
+
+	r.Log.Info("In a Reconcile Function", "UserInfo", sampleApp.Spec.UserInfo)
 	return ctrl.Result{}, nil
 }
 
