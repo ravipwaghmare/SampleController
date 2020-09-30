@@ -1,0 +1,26 @@
+# permissions to do edit sampleapps.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sampleapp-editor-role
+rules:
+- apiGroups:
+  - app.mydomain
+  resources:
+  - sampleapps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - app.mydomain
+  resources:
+  - sampleapps/status
+  verbs:
+  - get
+  - patch
+  - update

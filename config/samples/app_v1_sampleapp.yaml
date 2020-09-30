@@ -1,0 +1,7 @@
+apiVersion: app.mydomain/v1
+kind: SampleApp
+metadata:
+  name: sampleapp-sample
+spec:
+  # Add fields here
+  foo: bar

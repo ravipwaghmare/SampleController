@@ -1,0 +1,7 @@
+domain: mydomain
+repo: sample-project
+resources:
+- group: app
+  kind: SampleApp
+  version: v1
+version: "2"
